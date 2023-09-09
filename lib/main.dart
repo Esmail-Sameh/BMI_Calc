@@ -23,6 +23,8 @@ class App extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        scaffoldBackgroundColor: Color(333739),
+
       ),
     );
   }
