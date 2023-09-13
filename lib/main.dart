@@ -1,6 +1,7 @@
+import 'package:bmi_calc/cubit/cubit.dart';
 import 'package:bmi_calc/screens/home.dart';
-import 'package:bmi_calc/screens/result.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main(){
   runApp(App());
@@ -11,20 +12,23 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Home(),
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          centerTitle: true,
-          titleTextStyle: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+    return BlocProvider(
+      create: (context) => BmiCubit(),
+      child:MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Home(),
+        theme: ThemeData(
+          appBarTheme: AppBarTheme(
+            centerTitle: true,
+            titleTextStyle: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
 
-      ),
+        ),
+      )
     );
   }
 }
