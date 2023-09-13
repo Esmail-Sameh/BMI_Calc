@@ -1,4 +1,5 @@
 import 'package:bmi_calc/screens/home.dart';
+import 'package:bmi_calc/screens/result.dart';
 import 'package:flutter/material.dart';
 
 void main(){
@@ -16,14 +17,12 @@ class App extends StatelessWidget {
       theme: ThemeData(
         appBarTheme: AppBarTheme(
           centerTitle: true,
-          color: Colors.teal,
           titleTextStyle: TextStyle(
             color: Colors.white,
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),
-        scaffoldBackgroundColor: Color(333739),
 
       ),
     );
