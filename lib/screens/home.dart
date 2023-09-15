@@ -34,7 +34,7 @@ class Home extends StatelessWidget {
                                           .grey[400],
                                       borderRadius: BorderRadius.circular(10),
                                     ),
-                                    child: Column(
+                                    child: Column (
                                       mainAxisAlignment: MainAxisAlignment
                                           .center,
                                       children: [
@@ -59,7 +59,7 @@ class Home extends StatelessWidget {
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: BmiCubit.get(context).isMail ? Colors.grey[400] : Colors.blue,
+                                    color: BmiCubit.get(context).isMail ? Colors.grey[300] : Colors.blue,
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Column(
