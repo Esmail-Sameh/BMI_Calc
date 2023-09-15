@@ -1,21 +1,21 @@
-import 'package:bmi_calc/main.dart';
+import 'package:bmi_calc/constants/data.dart';
 import 'package:flutter/material.dart';
 
 class Result extends StatelessWidget {
 
-  final int result;
-  final int age;
-  final bool isMail;
+  // final int result;
+  // final int age;
+  // final bool isMail;
 
-  Result({
-    required this.result,
-    required this.age,
-    required this.isMail
-  });
+  // Result({
+  //   required this.result,
+  //   required this.age,
+  //   required this.isMail
+  // });
 
   @override
   Widget build(BuildContext context) {
-
+    Data data = ModalRoute.of(context)!.settings.arguments as Data;
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
@@ -32,28 +32,26 @@ class Result extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Gender: ${isMail ? 'Mail' : 'Femail'}',
+                 'Gender: ${data.isMail ? 'Mail' : 'Femail'}',
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold
                 ),
               ),
-
               Text(
-                'Result: $result',
+                'Result: ${data.result.round()}',
                 style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold
                 ),
               ),
               Text(
-                'Age: $age',
+                'Age: ${data.age}',
                 style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold
                 ),
               ),
-
             ],
           ),
         ),

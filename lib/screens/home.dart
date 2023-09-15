@@ -1,11 +1,8 @@
-import 'dart:math';
-
 import 'package:bmi_calc/cubit/cubit.dart';
 import 'package:bmi_calc/cubit/states.dart';
-import 'package:bmi_calc/screens/result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:bmi_calc/constants/data.dart';
 class Home extends StatelessWidget {
 
 
@@ -261,9 +258,16 @@ class Home extends StatelessWidget {
                       child: MaterialButton(
                         onPressed: () {
                           BmiCubit.get(context).result_And_Navgat();
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => Result(result: BmiCubit.get(context).result.toInt(), age: BmiCubit.get(context).age, isMail: BmiCubit.get(context).isMail), ));
-                        },
+                          Navigator.pushNamed(context,
+                            'result',
+                            arguments: Data(
+                                result: BmiCubit.get(context).result,
+                                age: BmiCubit.get(context).age,
+                                isMail: BmiCubit.get(context).isMail,
+                            ),
+                          );
+
+                          },
                         child: Text(
                           'Calc',
                           style: TextStyle(

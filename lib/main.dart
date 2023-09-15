@@ -1,10 +1,12 @@
 import 'package:bmi_calc/cubit/cubit.dart';
 import 'package:bmi_calc/screens/home.dart';
+import 'package:bmi_calc/screens/result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main(){
   runApp(App());
+
 }
 
 class App extends StatelessWidget {
@@ -16,7 +18,12 @@ class App extends StatelessWidget {
       create: (context) => BmiCubit(),
       child:MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: Home(),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => Home(),
+          'result': (context) => Result(),
+          //result: result, age: age, isMail: isMail
+        },
         theme: ThemeData(
           appBarTheme: AppBarTheme(
             centerTitle: true,
@@ -26,7 +33,6 @@ class App extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-
         ),
       )
     );
