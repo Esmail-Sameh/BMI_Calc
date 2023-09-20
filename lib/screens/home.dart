@@ -1,3 +1,4 @@
+import 'package:bmi_calc/constants/colors.dart';
 import 'package:bmi_calc/cubit/cubit.dart';
 import 'package:bmi_calc/cubit/states.dart';
 import 'package:flutter/material.dart';
@@ -5,15 +6,23 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bmi_calc/constants/data.dart';
 class Home extends StatelessWidget {
 
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<BmiCubit, BmiStates>(
         listener: (context, state) {},
         builder: (context, state) {
+          var cubit = BmiCubit.get(context);
           return Scaffold(
             appBar: AppBar(
               title: Text('Body Mass Index'),
+              actions: [
+                IconButton(
+                    onPressed: (){
+                      cubit.change_Mode();
+                    },
+                    icon: Icon(Icons.brightness_4_outlined)
+                )
+              ],
             ),
             body: SafeArea(
                 child: Column(
@@ -30,8 +39,7 @@ class Home extends StatelessWidget {
                                   },
                                   child: Container(
                                     decoration: BoxDecoration(
-                                      color: BmiCubit.get(context).isMail ? Colors.blue : Colors
-                                          .grey[400],
+                                      color: cubit.isMail ? cubit.color_Select_Gender : cubit.color_Contaners,
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     child: Column (
@@ -55,11 +63,11 @@ class Home extends StatelessWidget {
                               SizedBox(width: 16,),
                               Expanded(child: GestureDetector(
                                 onTap: () {
-                                  BmiCubit.get(context).is_Mail_False();
+                                  cubit.is_Mail_False();
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: BmiCubit.get(context).isMail ? Colors.grey[300] : Colors.blue,
+                                    color: cubit.isMail ? cubit.color_Contaners : cubit.color_Select_Gender,
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Column(
@@ -89,7 +97,7 @@ class Home extends StatelessWidget {
                           child: Container(
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                color: Colors.grey[400],
+                                color: cubit.color_Contaners,
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Column(
@@ -109,7 +117,7 @@ class Home extends StatelessWidget {
                                     textBaseline: TextBaseline.alphabetic,
                                     children: [
                                       Text(
-                                        "${BmiCubit.get(context).height.round()} ",
+                                        "${cubit.height.round()} ",
                                         style: TextStyle(
                                           fontSize: 40,
                                           fontWeight: FontWeight.bold,
@@ -126,11 +134,11 @@ class Home extends StatelessWidget {
                                     ],
                                   ),
                                   Slider(
-                                      value: BmiCubit.get(context).height,
+                                      value: cubit.height,
                                       max: 220,
                                       min: 80,
                                       onChanged: (value) {
-                                        BmiCubit.get(context).change_Height(value);
+                                        cubit.change_Height(value);
                                         // setState(() {
                                         //   //print("dd ${value.round()} ");
                                         //   height = value;
@@ -151,7 +159,7 @@ class Home extends StatelessWidget {
                                 child: Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
-                                    color: Colors.grey[400],
+                                    color: cubit.color_Contaners,
                                   ),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -165,7 +173,7 @@ class Home extends StatelessWidget {
                                       ),
                                       SizedBox(height: 10,),
                                       Text(
-                                        '${BmiCubit.get(context).weight}',
+                                        '${cubit.weight}',
                                         style: TextStyle(
                                           fontSize: 30,
                                           fontWeight: FontWeight.bold,
@@ -177,7 +185,7 @@ class Home extends StatelessWidget {
                                         children: [
                                           FloatingActionButton(
                                             onPressed: () {
-                                              BmiCubit.get(context).min_Weight();
+                                              cubit.min_Weight();
                                             },
                                             child: Icon(Icons.remove),
                                             mini: true,
@@ -186,7 +194,7 @@ class Home extends StatelessWidget {
                                           SizedBox(width: 10,),
                                           FloatingActionButton(
                                               onPressed: () {
-                                                BmiCubit.get(context).plus_Weight();
+                                                cubit.plus_Weight();
                                               },
                                               child: Icon(Icons.add),
                                               mini: true,
@@ -202,7 +210,7 @@ class Home extends StatelessWidget {
                                 child: Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
-                                    color: Colors.grey[400],
+                                    color: cubit.color_Contaners,
                                   ),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -216,7 +224,7 @@ class Home extends StatelessWidget {
                                       ),
                                       SizedBox(height: 10,),
                                       Text(
-                                        '${BmiCubit.get(context).age}',
+                                        '${cubit.age}',
                                         style: TextStyle(
                                           fontSize: 30,
                                           fontWeight: FontWeight.bold,
@@ -228,7 +236,7 @@ class Home extends StatelessWidget {
                                         children: [
                                           FloatingActionButton(
                                             onPressed: () {
-                                              BmiCubit.get(context).min_Age();
+                                              cubit.min_Age();
                                             },
                                             child: Icon(Icons.remove),
                                             mini: true,
@@ -237,7 +245,7 @@ class Home extends StatelessWidget {
                                           SizedBox(width: 10,),
                                           FloatingActionButton(
                                             onPressed: () {
-                                              BmiCubit.get(context).plus_Age();
+                                              cubit.plus_Age();
                                             },
                                             child: Icon(Icons.add),
                                             mini: true,
@@ -253,17 +261,17 @@ class Home extends StatelessWidget {
                         )),
                     Container(
                       width: double.infinity,
-                      color: Colors.blue,
+                      color: cubit.color_Select_Gender,
                       height: 60,
                       child: MaterialButton(
                         onPressed: () {
-                          BmiCubit.get(context).result_And_Navgat();
+                          cubit.result_And_Navgat();
                           Navigator.pushNamed(context,
                             'result',
                             arguments: Data(
-                                result: BmiCubit.get(context).result,
-                                age: BmiCubit.get(context).age,
-                                isMail: BmiCubit.get(context).isMail,
+                                result: cubit.result,
+                                age: cubit.age,
+                                isMail: cubit.isMail,
                             ),
                           );
 

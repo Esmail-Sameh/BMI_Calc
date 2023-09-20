@@ -16,3 +16,5 @@ class Bmi_IsMale_False_State extends BmiStates{}
 
 class Bmi_Change_Height_State extends BmiStates{}
 
+class Bmi_Change_Mode_State extends BmiStates{}
+
